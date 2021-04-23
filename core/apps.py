@@ -10,4 +10,7 @@ class CoreConfig(AppConfig):
 
         import os
         if os.environ.get('RUN_MAIN', None) != 'true':
-            bots.up_bots(TelegramData.objects.filter(active=True))
+            try:
+                bots.up_bots(TelegramData.objects.filter(active=True))
+            except Exception as e:
+                print('faild CoreConfig.ready because', repr(e))
