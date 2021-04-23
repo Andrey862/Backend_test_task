@@ -1,12 +1,34 @@
-from django.db import models
+import re
+from re import T
+
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.db import models
 from django.db.models.fields.related import ForeignKey
 
 from .service import bots
 
+def validate_token(token):
+    if (not re.match(r"[0-9]{9}:[a-zA-Z0-9_-]{35}", token)):
+        raise ValidationError("Token is invalid")
+    return token
 
 class TelegramData(models.Model):
-    token = models.CharField(max_length=45)
+    """
+    TelegramData model
+    
+    Fields:
+    ``token`` - string, unique, must be valid
+    ``title`` - string, not required
+    ``active`` - boolean, default is "True"
+    
+    FK: ``User``
+
+
+    Functions:
+    calls .service.bots on updates or deletion
+    """
+    token = models.CharField(max_length=45, unique=True, validators = [validate_token])
     title = models.CharField(max_length=20, null=True, blank=True)
     active = models.BooleanField(default=True, blank=True)
     owner = ForeignKey(User,  verbose_name='Owner', on_delete=models.CASCADE)

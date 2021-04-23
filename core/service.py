@@ -10,7 +10,7 @@ def _echo(update, _) -> None:
     update.message.reply_text(update.message.text)
 
 
-class BotsHandler:
+class BotsPool:
     """
     Handels list of telegram bots
     """
@@ -45,4 +45,4 @@ class BotsHandler:
             del self.bots[bot_id]
 
 
-bots = BotsHandler()
+bots = BotsPool()
