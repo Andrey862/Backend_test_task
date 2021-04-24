@@ -20,7 +20,7 @@ For interactions with bot I use telegramData model which is available on endpoin
 telegramData have next fields:
 - `id`: readonly
 - `token`: required
-- `title`: just ashort string, optional
+- `title`: just a short string, optional
 - `active`: puts bot in idle state if switched to False, optional, default if True
 (For some reason bots are put in idle state after about 0.5-1 minute only after this field changed to False)
 
