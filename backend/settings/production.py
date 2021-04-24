@@ -72,6 +72,7 @@ CORS_ALLOW_CREDENTIALS = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
