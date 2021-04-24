@@ -24,6 +24,8 @@ telegramData have next fields:
 - `active`: puts bot in idle state if switched to False, optional, default if True
 (For some reason bots are put in idle state after about 0.5-1 minute only after this field changed to False)
 
+### Progress
+Restriction on a user having only maximum of 5 bots is not yet implemented
 
 ## Local Deployment
 Run this:
