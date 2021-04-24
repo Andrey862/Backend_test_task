@@ -28,9 +28,20 @@ class TelegramData(models.Model):
     Functions:
     calls .service.bots on updates or deletion
     """
-    token = models.CharField(max_length=45, unique=True, validators = [validate_token])
-    title = models.CharField(max_length=20, null=True, blank=True)
-    active = models.BooleanField(default=True, blank=True)
+    token = models.CharField(max_length=45,
+                             unique=True,
+                             validators = [validate_token],
+                             help_text = "Telegram token")
+    
+    title = models.CharField(max_length=20,
+                             null=True,
+                             blank=True,
+                             help_text = "Short name of the bot (optional)")
+
+    active = models.BooleanField(default=True, blank=True, 
+                                 help_text = "If False, bot will be put in idle state. Default is True")
+
+                                
     owner = ForeignKey(User,  verbose_name='Owner', on_delete=models.CASCADE)
 
     def __str__(self) -> str:
