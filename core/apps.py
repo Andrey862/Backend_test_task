@@ -9,6 +9,8 @@ class CoreConfig(AppConfig):
         from .models import TelegramData
 
         import os
+
+        # Start all bots that are currently in the database
         if os.environ.get('RUN_MAIN', None) != 'true':
             try:
                 bots.up_bots(TelegramData.objects.filter(active=True))

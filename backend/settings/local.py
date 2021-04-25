@@ -13,9 +13,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import environ
-import django_heroku
-import dj_database_url
-
 env = environ.Env()
 environ.Env.read_env()
 
@@ -32,7 +29,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['myawesomeeoratesttask.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -163,6 +160,3 @@ REST_FRAMEWORK = {
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-django_heroku.settings(locals())

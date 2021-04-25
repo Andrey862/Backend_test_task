@@ -1,0 +1,1 @@
+MAX_BOTS_PER_USER = 5

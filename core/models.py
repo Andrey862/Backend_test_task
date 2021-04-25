@@ -1,5 +1,4 @@
 import re
-from re import T
 
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -9,6 +8,7 @@ from django.db.models.fields.related import ForeignKey
 from .service import bots
 
 def validate_token(token):
+    # Validate telegram token
     if (not re.match(r"[0-9]{9}:[a-zA-Z0-9_-]{35}", token)):
         raise ValidationError("Token is invalid")
     return token
@@ -48,13 +48,19 @@ class TelegramData(models.Model):
         return f"{self.owner}'s Title: {self.title}"
 
     def save(self, *args, **kwargs):
-        if (self.active):
-            bots.start_bot(bot_id=self.id, token=self.token)
-        else:
-            bots.stop_bot(bot_id=self.id)
-        return super().save(*args, **kwargs)
+        # Start or stop the bot on model change
+        try:
+            if (self.active):
+                bots.start_bot(bot_id=self.id, token=self.token)
+            else:
+                bots.stop_bot(bot_id=self.id)
+            return super().save(*args, **kwargs)
+        except Exception as e:
+            # Teporary ignore unauthorised error
+            pass
 
     def delete(self,  *args, **kwargs):
+        # Delete the bot in model deletion
         bots.delete_bot(self.id)
         return super().delete(*args, **kwargs)
 
