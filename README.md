@@ -1,3 +1,4 @@
+Это решение тестового задания "EORA - тестовое задание - Бэкенд" для стажировки "Разработка бэкенда административной панели для чат-бот платформы"
 # API documentation
 API documentation awailable with [Swagger (click me)](https://myawesomeeoratesttask.herokuapp.com/swagger/)
 # My solution
