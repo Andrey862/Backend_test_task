@@ -28,7 +28,7 @@ These enpoints don't allow to create more than 5 bots
 - `title`: just a short string, **optional**
 - `active`: puts bot in idle state if switched to False, **optional**, default if True
 
-For some reason bots are put in idle state only after about 0.5-1 minute after *"active"* field set to False
+For some reason sometimes bots are put in idle state only after about 0.5-1 minute after *"active"* field set to False. Sometimes instanly
 
 
 
